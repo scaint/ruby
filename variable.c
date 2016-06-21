@@ -2645,10 +2645,10 @@ const_tbl_update(struct autoload_const_set_args *args)
 	    VALUE name = QUOTE_ID(id);
 	    visibility = ce->flag;
 	    if (klass == rb_cObject)
-		rb_warn("already initialized constant %"PRIsVALUE"", name);
+    rb_name_error(id, "already initialized constant %"PRIsVALUE". Keep your hands off it!", QUOTE_ID(id));
 	    else
-		rb_warn("already initialized constant %"PRIsVALUE"::%"PRIsVALUE"",
-			rb_class_name(klass), name);
+    rb_name_error(id, "already initialized constant %"PRIsVALUE"::%"PRIsVALUE". Keep your hands off it!",
+      rb_class_name(klass), name);
 	    if (!NIL_P(ce->file) && ce->line) {
 		rb_compile_warn(RSTRING_PTR(ce->file), ce->line,
 				"previous definition of %"PRIsVALUE" was here", name);
